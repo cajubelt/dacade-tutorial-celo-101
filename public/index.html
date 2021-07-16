@@ -42,7 +42,7 @@
         }
     </style>
 
-    <title>Street Food Kigali</title>
+    <title>Block Climber</title>
 </head>
 
 <body>
@@ -50,11 +50,11 @@
 
     <nav class="navbar bg-white navbar-light">
         <div class="container-fluid">
-            <span class="navbar-brand m-0 h4 fw-bold">Street Food Kigali</span>
-            <span class="nav-link border rounded-pill bg-light">
-            <span id="balance">0</span>
-            cUSD
-          </span>
+            <span class="navbar-brand m-0 h4 fw-bold">Block Climber</span>
+<!--            <span class="nav-link border rounded-pill bg-light">-->
+<!--            <span id="balance">0</span>-->
+<!--            cUSD-->
+<!--          </span>-->
         </div>
     </nav>
 
@@ -68,11 +68,11 @@
                 data-bs-toggle="modal"
                 data-bs-target="#addModal"
         >
-            Add product
+            Add ascent
         </a>
     </div>
 
-    <main id="marketplace" class="row"></main>
+    <main id="logbook" class="row"></main>
 </div>
 
 <!--Modal-->
@@ -80,13 +80,13 @@
         class="modal fade"
         id="addModal"
         tabindex="-1"
-        aria-labelledby="newProductModalLabel"
+        aria-labelledby="newAscentModalLabel"
         aria-hidden="true"
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newProductModalLabel">New Product</h5>
+                <h5 class="modal-title" id="newAscentModalLabel">New Ascent</h5>
                 <button
                         type="button"
                         class="btn-close"
@@ -100,9 +100,9 @@
                         <div class="col">
                             <input
                                     type="text"
-                                    id="newProductName"
+                                    id="newAscentRouteName"
                                     class="form-control mb-2"
-                                    placeholder="Enter name of product"
+                                    placeholder="Name of route"
                             />
                         </div>
                         <div class="col">
@@ -110,31 +110,31 @@
                                     type="text"
                                     id="newImgUrl"
                                     class="form-control mb-2"
-                                    placeholder="Enter image url"
+                                    placeholder="Image url"
                             />
                         </div>
                         <div class="col">
                             <input
                                     type="text"
-                                    id="newProductDescription"
+                                    id="newAscentLocation"
                                     class="form-control mb-2"
-                                    placeholder="Enter product description"
+                                    placeholder="Route location"
                             />
                         </div>
                         <div class="col">
                             <input
                                     type="text"
-                                    id="newLocation"
+                                    id="newAscentDifficulty"
                                     class="form-control mb-2"
-                                    placeholder="Enter location"
+                                    placeholder="Route difficulty"
                             />
                         </div>
                         <div class="col">
                             <input
                                     type="text"
-                                    id="newPrice"
+                                    id="newAscentDescription"
                                     class="form-control mb-2"
-                                    placeholder="Enter price"
+                                    placeholder="Any notes about your ascent"
                             />
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                         data-bs-dismiss="modal"
                         id="newProductBtn"
                 >
-                    Add product
+                    Add ascent
                 </button>
             </div>
         </div>

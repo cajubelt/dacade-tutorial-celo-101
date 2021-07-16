@@ -4,7 +4,12 @@ pragma solidity >=0.7.0 <0.9.0;
 
 
 contract Logbook {
+    // Allows climbers to log routes they have completed (an "ascent") and witnesses to certify the ascents.
+    // (If a climb is particularly hard/notable, having witnesses is important for climbing media, history, awards,
+    //      sponsorships, etc.)
+
     struct Ascent {
+        // Represents an event in which a Climber completed a Route.
         uint id;
         Climber climber;
         Route route;
@@ -15,11 +20,13 @@ contract Logbook {
     }
 
     struct Climber {
+        // Represents a person who climbs.
         address climberAddress;
         string name;  // must be nonempty!
     }
 
     struct Route {
+        // Represents a climbing route, e.g. {name: "Biographie", location: "Ceuse, France", difficulty: "8a+"}
         string name;
         string location;
         string difficulty;

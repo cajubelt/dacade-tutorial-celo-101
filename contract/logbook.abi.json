@@ -1,0 +1,164 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_routeName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_routeLocation",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_routeDifficulty",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_image",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_epochSecond",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_notes",
+        "type": "string"
+      }
+    ],
+    "name": "addAscentForSender",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_climberAddress",
+        "type": "address"
+      }
+    ],
+    "name": "climberIsRegistered",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllAscents",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "climberAddress",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct Logbook.Climber",
+            "name": "climber",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "location",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "difficulty",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct Logbook.Route",
+            "name": "route",
+            "type": "tuple"
+          },
+          {
+            "internalType": "string",
+            "name": "image",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "epochSecond",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "notes",
+            "type": "string"
+          },
+          {
+            "internalType": "address[]",
+            "name": "witnesses",
+            "type": "address[]"
+          }
+        ],
+        "internalType": "struct Logbook.Ascent[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      }
+    ],
+    "name": "registerClimber",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_ascentId",
+        "type": "uint256"
+      }
+    ],
+    "name": "witnessAscent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
