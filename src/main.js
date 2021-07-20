@@ -1,12 +1,8 @@
 import Web3 from 'web3'
 import {newKitFromWeb3} from '@celo/contractkit'
 import logbookAbi from '../contract/logbook.abi.json'
-import BigNumber from "bignumber.js";
-
 
 const LogbookContractAddress = "0xC98D8477f1aFf6023624e34F9CaCECc1523dB760"
-
-const ERC20_DECIMALS = 18
 
 let kit
 let contract
@@ -33,42 +29,7 @@ const connectCeloWallet = async function () {
     }
 }
 
-// async function approve(_price) {
-//     const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress)
-//
-//     const result = await cUSDContract.methods
-//         .approve(MPContractAddress, _price)
-//         .send({ from: kit.defaultAccount })
-//     return result
-// }
-
-// const getBalance = async function () {
-//     const totalBalance = await kit.getTotalBalance(kit.defaultAccount)
-//     const cUSDBalance = totalBalance.cUSD.shiftedBy(-ERC20_DECIMALS).toFixed(2)
-//     document.querySelector("#balance").textContent = cUSDBalance
-// }
-
 const getAscents = async function() {
-    // const _productsLength = await contract.methods.getProductsLength().call()
-    // const _products = []
-    // for (let i = 0; i < _productsLength; i++) {
-    //     let _product = new Promise(async (resolve, reject) => {
-    //         let p = await contract.methods.readProduct(i).call()
-    //         resolve({
-    //             index: i,
-    //             owner: p[0],
-    //             name: p[1],
-    //             image: p[2],
-    //             description: p[3],
-    //             location: p[4],
-    //             price: new BigNumber(p[5]),
-    //             sold: p[6],
-    //         })
-    //     })
-    //     _products.push(_product)
-    // }
-    // ascents = await Promise.all(_products)
-    // renderProducts()
     ascents = await contract.methods.getAllAscents().call()
     renderAscents()
 }
@@ -145,20 +106,19 @@ function notificationOff() {
 window.addEventListener("load", async () => {
     notification("⌛ Loading...")
     await connectCeloWallet()
-    // await getBalance()
     await getAscents()
     notificationOff()
 });
 
 document
-    .querySelector("#newProductBtn")
+    .querySelector("#newAscentBtn")
     .addEventListener("click", async (e) => {
         const params = [
             document.getElementById("newAscentRouteName").value,
             document.getElementById("newAscentLocation").value,
             document.getElementById("newAscentDifficulty").value,
             document.getElementById("newImgUrl").value,
-            new Date() / 1000,  // fixme use date selector for this instead
+            1,  // fixme use date selector for this instead
             document.getElementById("newAscentDescription").value
         ]
         notification(`⌛ Adding ascent of "${params[0]}"...`)
@@ -166,34 +126,24 @@ document
             const result = await contract.methods
                 .addAscentForSender(...params)
                 .send({ from: kit.defaultAccount })
+            console.log(JSON.stringify(result))
+            notification(`🎉 Successfully added your ascent of "${params[0]}"`)
+            getAscents()
         } catch (error) {
             notification(`⚠️ ${error}.`)
         }
-        notification(`🎉 You successfully added "${params[0]}".`)
-        getAscents()
     })
 
 document.querySelector("#logbook").addEventListener("click", async (e) => {
     if (e.target.className.includes("witnessBtn")) {
-        // todo switch to "witness" function
         const ascentId = e.target.id
-        // const index = e.target.id
-        // notification("⌛ Waiting for payment approval...")
-        // try {
-        //     await approve(products[index].price)
-        // } catch (error) {
-        //     notification(`⚠️ ${error}.`)
-        // }
-        // notification(`⌛ Awaiting payment for "${products[index].name}"...`)
-        // try {
-        //     const result = await contract.methods
-        //         .buyProduct(index)
-        //         .send({ from: kit.defaultAccount })
-        //     notification(`🎉 You successfully bought "${products[index].name}".`)
-        //     getProducts()
-        //     getBalance()
-        // } catch (error) {
-        //     notification(`⚠️ ${error}.`)
-        // }
+        try {
+            await contract.methods
+                .witnessAscent(ascentId)
+                .send({from: kit.defaultAccount})
+            notification("Successfully added a witness for the ascent")
+        } catch (error) {
+            notification(`⚠️ ${error}.`)
+        }
     }
 })
